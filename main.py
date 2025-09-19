@@ -1,7 +1,6 @@
 from flask import Flask, render_template
 import sqlite3
 
-
 def get_db_connection():
     connection = sqlite3.connect("database.db")
     return connection
@@ -22,6 +21,13 @@ def home():
 def about():
     name_page = "about"
     return render_template("about.html", name_page=name_page)
+
+@app.route("/posts", methods=["GET"])
+def get_all_post():
+    c = get_db_connection()
+    posts = c.execute('SELECT * FROM posts').fetchall()
+    c.close()
+    return render_template("home.html", posts_list=posts)
 
 
 if __name__ == '__main__': 
