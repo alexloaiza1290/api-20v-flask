@@ -12,17 +12,24 @@
             <th>Título</th>
             <th>Contenido</th>
             <th>Fecha de Creación</th>
+            <th>Acciones</th>
         </tr>
     </thead>
-    <tbody>
+    <tbody hx-confirm="Are you sure?" hx-target="closest tr" hx-swap="outerHTML swap:1s">
         {% for post in posts_list %}
             <tr>
-                <td>{{ post['id'] }}</td>
+                <td><a href="{{ url_for('get_one_post', post_id=post['id']) }}">{{ post['id'] }}</a></td>
                 <td>{{ post['title'] }}</td>
                 <td>{{ post['content'] }}</td>
                 <td>{{ post['created'] }}</td>
+                <td><a href="{{ url_for('edit_one_post', post_id=post['id']) }}" class="btn btn-warning btn-sm">Editar</a></td>
+                <td>
+                    <button class="btn btn-danger btn-sm" hx-delete="/posts/delete/{{ post['id'] }}">Delete</button>
+                </td>
             </tr>
         {% endfor %}
     </tbody>
 </table>
+
+<a class="btn btn-primary" href="{{ url_for('create_one_post') }}">Nuevo Post</a>
 {% endblock %}
