@@ -24,5 +24,10 @@ def handleMessage(msg):
     print(f'Mensaje de cliente {sid}: {msg}')
     send(f'Echo del servidor {sid}: {msg}', broadcast=True, include_self=False)
 
+
+@app.route("/posts/create", methods=["GET", "POST"])
+def create_one_post():
+        return "sfdsfds"
+
 if __name__ == '__main__':
     socketio.run(app, debug=True)
