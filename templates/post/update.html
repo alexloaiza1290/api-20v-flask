@@ -1,18 +1,16 @@
-{% extends 'base.html' %}
-
-{% block title %}Update{% endblock %}
-
+{% extends "base.html" %}
 {% block content %}
-<h1>Editar un post</h1>
-<form action="/posts/edit/{{ post['id'] }}" method="POST">
-    <div>
-        <label for="title">titulo</label>
-        <input type="text" id="title" name="title" value="{{ post['title'] }}">
+  <h1>Editar post</h1>
+  <form method="post">
+    <div class="mb-3">
+      <label for="title" class="form-label">Título</label>
+      <input type="text" class="form-control" id="title" name="title" value="{{ post['title'] }}" required>
     </div>
-    <div>
-        <label for="content">contenido</label>
-        <input type="text" id="content" name="content" value="{{ post['content'] }}">
+    <div class="mb-3">
+      <label for="content" class="form-label">Contenido</label>
+      <textarea class="form-control" id="content" name="content" rows="5" required>{{ post['content'] }}</textarea>
     </div>
-    <button type="submit">Editar</button>
-</form>
+    <button type="submit" class="btn btn-primary">Actualizar</button>
+    <a href="{{ url_for('get_all_post') }}" class="btn btn-secondary">Cancelar</a>
+  </form>
 {% endblock %}

@@ -1,18 +1,16 @@
-{% extends 'base.html' %}
-
-{% block title %}Create{% endblock %}
-
+{% extends "base.html" %}
 {% block content %}
-<h1>Crear un post</h1>
-<form action="/posts/create" method="POST">
-    <div>
-        <label for="title">titulo</label>
-        <input type="text" id="title" name="title">
+  <h1>Crear nuevo post</h1>
+  <form method="post">
+    <div class="mb-3">
+      <label for="title" class="form-label">Título</label>
+      <input type="text" class="form-control" id="title" name="title" required>
     </div>
-    <div>
-        <label for="content">contenido</label>
-        <input type="text" id="content" name="content">
+    <div class="mb-3">
+      <label for="content" class="form-label">Contenido</label>
+      <textarea class="form-control" id="content" name="content" rows="5" required></textarea>
     </div>
-    <button type="submit">Crear</button>
-</form>
+    <button type="submit" class="btn btn-success">Guardar</button>
+    <a href="{{ url_for('get_all_post') }}" class="btn btn-secondary">Cancelar</a>
+  </form>
 {% endblock %}
